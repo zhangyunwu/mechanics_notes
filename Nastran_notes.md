@@ -10,8 +10,8 @@ NX软件（或其他任意软件）画网格得到有限元模型，然后“新
 
 要设置输出的模态阶数，可编辑**Subcase**，修改**Lanczos特征值方法**的**Lanczos数据**，**所需模态数**即为模态分析输出的模态阶数。
 
-![修改模态阶数]()
-![修改模态阶数]()
+![编辑Subcase](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91Subcase.png)
+![修改模态阶数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E6%A8%A1%E6%80%81%E9%98%B6%E6%95%B0.png)
 
 ## 输出质量矩阵、刚度矩阵
 
