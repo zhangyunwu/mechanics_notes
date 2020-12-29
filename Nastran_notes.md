@@ -5,7 +5,7 @@
 
 ## 阻尼
 
-- 结构阻尼（structral damping）
+- **结构阻尼**（structral damping）
 
     结构阻尼力与位移成正比
     $$f_s=iGku$$
@@ -16,14 +16,14 @@
     - $u$为位移
     - $i=\sqrt{(-1)}$，表示相位改变$90^\circ$
 
-- 粘性阻尼（viscous damping）
+- **粘性阻尼**（viscous damping）
     粘性阻尼力与速度成正比
     $$f_v=c\dot{u}=i\omega cu$$
 
     其中：
     - $c$为粘性阻尼系数
     - $\dot{u}$为速度
-- 阻尼比
+- **阻尼比**
     $$\xi=\frac{G}{2}=\frac{1}{2Q}$$
 
     其中$Q$为动态放大因子（放大系数、质量系数）
