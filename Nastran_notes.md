@@ -5,6 +5,31 @@
 
 ## 阻尼
 
+- 结构阻尼（structral damping）
+
+    结构阻尼力与位移成正比
+    $$f_s=iGku$$
+
+    其中：
+    - $G$为结构阻尼系数
+    - $k$为刚度
+    - $u$为位移
+    - $i=\sqrt{(-1)}$，表示相位改变$90^\circ$
+
+- 粘性阻尼（viscous damping）
+    粘性阻尼力与速度成正比
+    $$f_v=c\dot{u}=i\omega cu$$
+
+    其中：
+    - $c$为粘性阻尼系数
+    - $\dot{u}$为速度
+- 阻尼比
+    $$\xi=\frac{G}{2}=\frac{1}{2Q}$$
+    
+    其中$Q$为动态放大因子（放大系数、质量系数）
+
+另请参考：[autodesk inventor nastran](https://knowledge.autodesk.com/zh-hans/support/inventor-nastran/learn-explore/caas/CloudHelp/cloudhelp/2021/CHS/NINCAD-UsersGuide/files/GUID-A95DA0DE-C497-450F-B6AC-0C92F6E5DAEC-htm.html)
+
 # 模态分析
 
 NX软件（或其他任意软件）画网格得到有限元模型，然后**新建仿真**，**解算方案**中**解算类型**选择为**SOL 103 实特征值**
