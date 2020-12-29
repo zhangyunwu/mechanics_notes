@@ -1,5 +1,10 @@
 # Nastran notes
 
+# 建模
+## 集中质量/协调质量
+
+## 阻尼
+
 # 模态分析
 
 NX软件（或其他任意软件）画网格得到有限元模型，然后“新建仿真”，“解算方案”中“解算类型”选择为“SOL 103 实特征值” 
@@ -19,6 +24,7 @@ $*  Modeling Object: Real Eigenvalue - Lanczos1
 $IGRL        SID      V1      V2      ND  MSGLVL  MAXSET  SHFSCL    NORM
 EIGRL        101                      40       0       7            MASS
 ```
+
 ## 输出振型矩阵
 
 在模态分析时可直接将振型矩阵数据输出到`.f06`文件中:
@@ -30,23 +36,22 @@ EIGRL        101                      40       0       7            MASS
 OUTPUT
 DISPLACEMENT(PRINT,REAL) = ALL
 ```
+
 ![编辑解算方案](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91%E8%A7%A3%E7%AE%97%E6%96%B9%E6%A1%88.png)
 ![修改输出介质](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E8%BE%93%E5%87%BA%E4%BB%8B%E8%B4%A8.png)
 
-> 修改输出介质为`PRINT`后就能在`.f06`文件中找到振型数据，且在不影响后处理界面查看振型云图。
+> 修改输出介质为`PRINT`后就能在`.f06`文件中找到振型数据，且不影响在后处理界面查看振型云图。
 
 ## 输出质量矩阵、刚度矩阵
 
-<!-- NX软件（或其他任意软件）画网格得到有限元模型，然后“新建仿真”，“解算方案”中“解算类型”选择为“SOL 103 实特征值” 
-
-![解算类型](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E8%A7%A3%E7%AE%97%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9.png) -->
-
 首先按照常规模态分析步骤新建算例，然后添加参数（PARAM）：`PARAM,EXTOUT,DMIGPCH` 
+
 表现在卡片中为：
 ```
 OUTPUT
 PARAM,EXTOUT,DMIGPCH
 ```
+
 > 此参数在卡片中位于`OUTPUT`之后，而不是在`PARAM CARDS`位置。
 
 ![EXTOUT参数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/EXTOUT%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.png)
@@ -58,5 +63,6 @@ PARAM,EXTOUT,DMIGPCH
 > 此方法无法同时完成常规模态分析，因为这个时候软件并没有输出振型结果。
 > 输出的质量矩阵、刚度矩阵不含边界条件，所以在建立算例时无需添加边界条件。
 
-## 输出振型矩阵
+# 频域分析
 
+## 输出频响函数矩阵
