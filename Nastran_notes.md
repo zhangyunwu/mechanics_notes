@@ -12,6 +12,7 @@ NX软件（或其他任意软件）画网格得到有限元模型，然后“新
 
 ![编辑Subcase](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91Subcase.png)
 ![修改模态阶数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E6%A8%A1%E6%80%81%E9%98%B6%E6%95%B0.png)
+
 表现在卡片中为：
 ```
 $*  Modeling Object: Real Eigenvalue - Lanczos1
@@ -32,13 +33,21 @@ DISPLACEMENT(PRINT,REAL) = ALL
 ![编辑解算方案](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91%E8%A7%A3%E7%AE%97%E6%96%B9%E6%A1%88.png)
 ![修改输出介质](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E8%BE%93%E5%87%BA%E4%BB%8B%E8%B4%A8.png)
 
+> 修改输出介质为`PRINT`后就能在`.f06`文件中找到振型数据，且在不影响后处理界面查看振型云图。
+
 ## 输出质量矩阵、刚度矩阵
 
-NX软件（或其他任意软件）画网格得到有限元模型，然后“新建仿真”，“解算方案”中“解算类型”选择为“SOL 103 实特征值” 
+<!-- NX软件（或其他任意软件）画网格得到有限元模型，然后“新建仿真”，“解算方案”中“解算类型”选择为“SOL 103 实特征值” 
 
-![解算类型](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E8%A7%A3%E7%AE%97%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9.png)
+![解算类型](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E8%A7%A3%E7%AE%97%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9.png) -->
 
-然后添加参数（PARAM）：`PARAM,EXTOUT,DMIGPCH` 
+首先按照常规模态分析步骤新建算例，然后添加参数（PARAM）：`PARAM,EXTOUT,DMIGPCH` 
+表现在卡片中为：
+```
+OUTPUT
+PARAM,EXTOUT,DMIGPCH
+```
+> 此参数在卡片中位于`OUTPUT`之后，而不是在`PARAM CARDS`位置。
 
 ![EXTOUT参数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/EXTOUT%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.png)
 
@@ -47,6 +56,7 @@ NX软件（或其他任意软件）画网格得到有限元模型，然后“新
 `.pch`文件中的数据以稀疏矩阵方式存储，需要手动转换为常规矩阵形式的数据，见[Get_K_M.m](https://github.com/zhangyunwu/mechanics_notes/blob/main/Get_K_M.m)
 
 > 此方法无法同时完成常规模态分析，因为这个时候软件并没有输出振型结果。
+> 输出的质量矩阵、刚度矩阵不含边界条件，所以在建立算例时无需添加边界条件。
 
 ## 输出振型矩阵
 
