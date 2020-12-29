@@ -1,6 +1,6 @@
 # Nastran notes
 
-## 模态分析
+# 模态分析
 
 NX软件（或其他任意软件）画网格得到有限元模型，然后“新建仿真”，“解算方案”中“解算类型”选择为“SOL 103 实特征值” 
 
@@ -12,6 +12,25 @@ NX软件（或其他任意软件）画网格得到有限元模型，然后“新
 
 ![编辑Subcase](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91Subcase.png)
 ![修改模态阶数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E6%A8%A1%E6%80%81%E9%98%B6%E6%95%B0.png)
+表现在卡片中为：
+```
+$*  Modeling Object: Real Eigenvalue - Lanczos1
+$IGRL        SID      V1      V2      ND  MSGLVL  MAXSET  SHFSCL    NORM
+EIGRL        101                      40       0       7            MASS
+```
+## 输出振型矩阵
+
+在模态分析时可直接将振型矩阵数据输出到`.f06`文件中:
+
+编辑**解算方案**-**工况控制**-**输出请求**，在对应输出变量中将**输出介质**修改为`PRINT`（默认为`PLOT`）
+
+表现在卡片中为：
+```
+OUTPUT
+DISPLACEMENT(PRINT,REAL) = ALL
+```
+![编辑解算方案](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E7%BC%96%E8%BE%91%E8%A7%A3%E7%AE%97%E6%96%B9%E6%A1%88.png)
+![修改输出介质](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/%E4%BF%AE%E6%94%B9%E8%BE%93%E5%87%BA%E4%BB%8B%E8%B4%A8.png)
 
 ## 输出质量矩阵、刚度矩阵
 
