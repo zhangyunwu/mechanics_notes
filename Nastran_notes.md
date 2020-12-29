@@ -25,10 +25,13 @@
     - $\dot{u}$为速度
 - 阻尼比
     $$\xi=\frac{G}{2}=\frac{1}{2Q}$$
-    
+
     其中$Q$为动态放大因子（放大系数、质量系数）
 
 另请参考：[autodesk inventor nastran](https://knowledge.autodesk.com/zh-hans/support/inventor-nastran/learn-explore/caas/CloudHelp/cloudhelp/2021/CHS/NINCAD-UsersGuide/files/GUID-A95DA0DE-C497-450F-B6AC-0C92F6E5DAEC-htm.html)
+
+> github markdown不支持latex公式渲染，Chrome浏览器可安装`MathJax Plugin for Github`插件。
+> 或将文件下载后用其他方式渲染（例如直接vscode）。
 
 # 模态分析
 
