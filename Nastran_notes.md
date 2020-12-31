@@ -106,6 +106,17 @@ PARAM,EXTOUT,DMIGPCH
 
 ![SOL 108 载荷类型](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E8%BD%BD%E8%8D%B7%E7%B1%BB%E5%9E%8B.png)
 
-这里需要注意，软件中选择的单位力作用位置是节点，而我们需要的是具体到某个自由度，所以需要具体设置哪些自由度激励哪些自由度不激励。建议先将各单位力作用节点设置好集合，避免混乱。
+这里需要注意，软件中选择的单位力作用位置是节点，而我们需要的是具体到某个自由度，所以需要具体设置某个节点哪些自由度激励哪些自由度不激励。建议先将各单位力作用节点设置好集合（组），避免混乱。
 
 ![SOL 108 单位力设置](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E5%8D%95%E4%BD%8D%E5%8A%9B%E8%AE%BE%E7%BD%AE.png)
+
+再编辑输出参数，设置输出的自由度。先将需要输出响应的节点都放进一个集合（组）内。然后编辑**SubCase**-**输出请求**，设置对应物理量的**输出介质**为`PRINT`，**节点选择**直接引用前面设置好的组。
+
+![SOL 108 输出请求](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E8%BE%93%E5%87%BA%E8%AF%B7%E6%B1%82.png)
+
+最后再设置需要输出的频点。
+编辑**SubCase**-**扰动频率**，新建一个**扰动频率**建模对象，设置**频率列表**，软件可以设置多种频率列表格式，包括**个别频率（FREQ）**、**线性扫频（FREQ1）**、**对数扫频（FREQ2）**、**倍频程（FREQ）**等。此处以**线性扫频（FREQ1）**为例，线性扫频定义方式又有**步长**和**步数**两种。
+
+![SOL 108 线性扫频](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E7%BA%BF%E6%80%A7%E6%89%AB%E9%A2%91.png)
+
+注意，这里设置步数为5000，实际得到的是5001个频点数据，$f=[0,500],step=0.1$，左右端点都包括。
