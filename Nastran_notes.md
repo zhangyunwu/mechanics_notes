@@ -94,3 +94,18 @@ PARAM,EXTOUT,DMIGPCH
 # 频域分析
 
 ## 输出频响函数矩阵
+首先建立有限元模型后**新建仿真**，**解算方案**中**解算类型**选择为**SOL 108 直接频率响应函数**。
+
+![SOL 108 直接频率响应函数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E7%9B%B4%E6%8E%A5%E9%A2%91%E7%8E%87%E5%93%8D%E5%BA%94%E5%87%BD%E6%95%B0.png)
+
+然后完成模型阻尼和边界条件的设置。
+
+再设置要输出的频响函数矩阵的对应自由度（一般没有必要输出全部自由度的数据），也就是从哪些自由度输入、哪些自由度输出。
+
+在NX **SOL 108 直接频率响应函数**中通过设置载荷来确定输入点的自由度。这里选择的载荷类型当然是单位力。
+
+![SOL 108 载荷类型](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E8%BD%BD%E8%8D%B7%E7%B1%BB%E5%9E%8B.png)
+
+这里需要注意，软件中选择的单位力作用位置是节点，而我们需要的是具体到某个自由度，所以需要具体设置哪些自由度激励哪些自由度不激励。建议先将各单位力作用节点设置好集合，避免混乱。
+
+![SOL 108 单位力设置](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E5%8D%95%E4%BD%8D%E5%8A%9B%E8%AE%BE%E7%BD%AE.png)
