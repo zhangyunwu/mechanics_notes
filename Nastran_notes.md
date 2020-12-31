@@ -110,8 +110,25 @@ PARAM,EXTOUT,DMIGPCH
 
 ![SOL 108 单位力设置](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E5%8D%95%E4%BD%8D%E5%8A%9B%E8%AE%BE%E7%BD%AE.png)
 
-再编辑输出参数，设置输出的自由度。先将需要输出响应的节点都放进一个集合（组）内。然后编辑**SubCase**-**输出请求**，设置对应物理量的**输出介质**为`PRINT`，**节点选择**直接引用前面设置好的组。
-
+再编辑输出参数，设置输出的自由度。先将需要输出响应的节点都放进一个集合（组）内。然后编辑**SubCase**-**输出请求**，设置对应物理量的**输出介质**为`PRINT`，**节点选择**直接引用前面设置好的组。软件中只能指定输出的节点而无法直接指定输出的自由度，所以最后会将节点的所有自由度结果都输出。
+```
+$*  Group (nodes): 3  Name: resp_out
+SET 3 = 1, 6
+$*
+ECHO = NONE
+SPC = 1
+$*  Step: Subcase - Direct Frequency Response Functions
+SUBCASE 1
+  LABEL = LOAD:NODE 2:+DOF3
+  FREQUENCY = 101
+  DLOAD = 301
+  ACCELERATION(SORT2,PRINT,REAL) = 3
+SUBCASE 2
+  LABEL = LOAD:NODE 5:+DOF2
+  FREQUENCY = 101
+  DLOAD = 302
+  ACCELERATION(SORT2,PRINT,REAL) = 3
+```
 ![SOL 108 输出请求](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E8%BE%93%E5%87%BA%E8%AF%B7%E6%B1%82.png)
 
 最后再设置需要输出的频点。
@@ -120,3 +137,9 @@ PARAM,EXTOUT,DMIGPCH
 ![SOL 108 线性扫频](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/SOL%20108%20%E7%BA%BF%E6%80%A7%E6%89%AB%E9%A2%91.png)
 
 注意，这里设置步数为5000，实际得到的是5001个频点数据，$f=[0,500],step=0.1$，左右端点都包括。
+```
+$*  Modeling Object: Forcing Frequencies1
+$REQ1        SID      F1      DF     NDF
+FREQ1        101  0.00000.100000    5000
+```
+现在可以提交计算了，计算完成后在`.f06`文件中能找到相应频响函数信息。
