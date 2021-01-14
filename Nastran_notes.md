@@ -84,12 +84,12 @@ PARAM,EXTOUT,DMIGPCH
 
 ![EXTOUT参数](https://github.com/zhangyunwu/mechanics_notes/blob/main/images/EXTOUT%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.png)
 
-然后提交计算，模型的刚度矩阵、质量矩阵信息会保存在`.pch`文件中
+然后设置边界条件，提交计算，模型的刚度矩阵、质量矩阵信息会保存在`.pch`文件中
 
 `.pch`文件中的数据以稀疏矩阵方式存储，需要手动转换为常规矩阵形式的数据，见[Get_K_M.m](https://github.com/zhangyunwu/mechanics_notes/blob/main/Get_K_M.m)
 
 > 此方法无法同时完成常规模态分析，因为这个时候软件并没有输出振型结果。
-> 输出的质量矩阵、刚度矩阵不含边界条件，所以在建立算例时无需添加边界条件。
+> 此处得到的矩阵包含边界条件并且矩阵阶数与自由结构的矩阵阶数相同，有位移约束的自由度所在行列的值全部为零。**需要自己手动将相应对角元素的值改位`1`**。
 
 # 频域分析
 
