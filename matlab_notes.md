@@ -5,3 +5,6 @@
 ```matlab
 [~, velocity] = gradient(displacement, dt)
 ```
+
+## 离散数据积分
+速度积分为位移
