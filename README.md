@@ -7,3 +7,5 @@ personal notes of mechanics.
 
 # 随机振动学习笔记
 0. [随机变量与随机过程](https://github.com/zhangyunwu/mechanics_notes/blob/main/random_vibration/0.%20random_variable_and_random_process.md)
+
+[随机变量](https://github.com/zhangyunwu/mechanics_notes/blob/main/random_vibration/1.random_process.html)
